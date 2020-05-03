@@ -10,7 +10,7 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 var express = require('express');
 var mongoose = require('mongoose');
 var config = require('./config/environment');
-const db = process.env.MONGODB_URL;
+const db = process.env.MONGODB_URL || config.mongo.uri;
 
 // Connect to database
 mongoose.connect(db, { useNewUrlParser: true ,useUnifiedTopology:true});
