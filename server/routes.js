@@ -5,7 +5,7 @@
 'use strict';
 
 var path = require('path');
-
+ var express =require('express')
 module.exports = function(app) {
 
   // Insert routes below
@@ -14,5 +14,6 @@ module.exports = function(app) {
 
   app.use('/auth', require('./auth'));
   
+  app.use(express.static('public'));
 
 };
