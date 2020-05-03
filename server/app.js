@@ -10,10 +10,10 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 var express = require('express');
 var mongoose = require('mongoose');
 var config = require('./config/environment');
-
+const db = process.env.MONGODB_URL;
 
 // Connect to database
-mongoose.connect(config.mongo.uri, { useNewUrlParser: true ,useUnifiedTopology:true});
+mongoose.connect(db, { useNewUrlParser: true ,useUnifiedTopology:true});
 mongoose.connection.once('open', function(){
   console.log('Conection has been made!');
 }).on('error', function(error){
@@ -34,6 +34,7 @@ require('./config/express')(app);
 require('./routes')(app);
 
 // Start server
+console.log(config.ip,db)
 
 server.listen(config.port, config.ip, function () {
   console.log('Express server listening on %d, in %s mode', config.port, app.get('env'));
